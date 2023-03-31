@@ -9,3 +9,34 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id          String @id @default(cuid())
+  username    String @unique
+  email       String @unique
+  password    String
+  isVerified  Boolean @default(false)
+  profile     Profile?
+  roles       Role[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Role {
+  id         String @id @default(cuid())
+  name       String
+  users      User[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Profile {
+  id         String @id @default(cuid())
+  firstName  String?
+  lastName   String?
+  bio        String?
+  avatar     String?
+  createdAt  DateTime @default(now())
+  userId     String @unique
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
