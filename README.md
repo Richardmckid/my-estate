@@ -30,6 +30,7 @@
 - [ ] Create Guest Layout
 - [ ] Create Authenticated User Layouts (NB: agent & normal auth users)
 - [ ] Create Admin Layout
+- [x] Create Navbar
 
 ## BU Logic
 - [ ] Create ...
